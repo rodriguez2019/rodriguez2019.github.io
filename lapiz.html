@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="lapiz.css">
+    <script src="lapizz.js"></script>
+</head>
+<body>
+    <!-- linea,lapiz,poligono,elipse,circulo,rectangulo -->
+    <input onclick="Select('linea')" type="button" class="btn btn-yes" value="Linea" id="linea">
+    <input onclick="Select('lapiz')" type="button" class="btn btn-no" value="Lapiz" id="lapiz">
+    <input onclick="Select('elipse')" type="button" class="btn btn-no" value="Elipse" id="elipse">
+    <input onclick="Select('circulo')" type="button" class="btn btn-no" value="Circulo" id="circulo">
+    <input onclick="Select('rectangulo')" type="button" class="btn btn-no" value="Rectangulo" id="rectangulo">
+    <input onclick="Select('cuadrado')" type="button" class="btn btn-no" value="Cuadrado" id="cuadrado">
+    <br>
+    <div id="main"><br>
+        Contorno<br><br>
+    <div class="picker"> <br><br>
+        R <input type="range" min="0" max="255" step="1" id="red" value="0">
+        G <input type="range" min="0" max="255" step="1" id="green" value="0">
+        B <input type="range" min="0" max="255" step="1" id="blue" value="0">
+        <div class="display" id="display"></div>
+    </div>
+    Relleno
+    <div class="picker"><br><br>
+        R <input type="range" min="0" max="255" step="1" id="c_red" value="0">
+        G <input type="range" min="0" max="255" step="1" id="c_green" value="0">
+        B <input type="range" min="0" max="255" step="1" id="c_blue" value="0">
+        <div class= "display" id="c_display"></div>
+    </div>
+    </div>
+    
+    <div id="main">
+        <canvas id="canvas">Su navegador no soporta canvas :( </canvas>
+        <p id="limpiar">limpiar canvas</p>
+    </div>
+</body>
+</html>
