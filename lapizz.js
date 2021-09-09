@@ -16,7 +16,7 @@ var ctx = canvas.getContext("2d");
 colores();
 var cw = canvas.width = 500;
 var ch = canvas.height = 500;
-
+var reader = new FileReader();
 var dibujar = false;
 var Trazados = [];
 var puntos = [];
@@ -27,6 +27,11 @@ dibujar = false;
 ctx.clearRect(0, 0, cw, ch);
 Trazados.length = 0;
 puntos.length = 0;
+dibujos_g = {
+    dibujos:
+    {
+    }
+};
 }, false);
 
 
@@ -207,6 +212,40 @@ for (let i = 0; i < input.length; i++) {
     });
 }
 }
+
+document.getElementById('save').addEventListener('click', () => {
+    var canvasContents = canvas.toDataURL();
+    var data = { image: canvasContents, date: Date.now() };
+    var string = JSON.stringify(data);
+
+    var file = new Blob([string], {
+      type: 'application/json'
+    });
+
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(file);
+    a.download = 'draw.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+
+  document.getElementById('load').addEventListener('change', function() {
+    if (this.files[0]) {
+      reader.readAsText(this.files[0]);
+    }
+  });
+
+  reader.onload = function() {
+    var data = JSON.parse(reader.result);
+    var image = new Image();
+    image.onload = function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0);
+    }
+    image.src = data.image;
+  };
+
 }
 function Select(botonClicked){
     document.getElementById("linea").className = "btn btn-no";
